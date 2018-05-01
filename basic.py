@@ -30,6 +30,7 @@ print data.index("hi")
 # print data.index("hi222")
 
 # 사전(딕셔너리)
+# { 키 : 값 }
 user = {}
 user["me"] = {"age": 30, "address" : "daejoen"}
 user["you"] = {"age": 22, "address" : "seoul"}
@@ -52,6 +53,20 @@ else :
 if num % 2 == 0:
     print "even"
 elif num % 2 == 1:
+    print "add"
+else:
+    print "???"
+num = 23
+if num > 20:
+    print "num > 20"
+if num > 20:
+    print "num > 20"
+else :
+    print "num < 20"
+
+if num % 2 == 0 :
+    print "even"
+elif num % 2 == 1 :
     print "add"
 else:
     print "???"
