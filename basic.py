@@ -70,3 +70,71 @@ elif num % 2 == 1 :
     print "add"
 else:
     print "???"
+
+#함수
+def addition(numbers):
+    result =0
+    for number in numbers:
+        result += number
+    return result
+
+data = [1,2,3]
+print addition(data)
+
+def help():
+    print "id ----- print user id"
+    print "pwd ----- print current path"
+    print "quit ----- exit program"
+    print "ip ----- print ip address"
+
+help()
+#라이브러리 불러오기
+import os
+import platform
+import subprocess
+#무한루프
+def shell():
+    while True:
+        cmd = raw_input('>>>')
+        if cmd == 'id' :
+            if platform.system() == 'windows':
+                print os.environ.get('USERNAME')
+            else:
+                print os.getenv('USER')
+        elif cmd == 'pwd':
+            print os.getcwd()
+        elif cmd == 'quit':
+            print "bye~"
+            break
+        elif cmd == 'ip':
+            if platform.system() == 'Windows':
+                buf = subprocess.check_output('ipconfig')
+                index =buf.find("IPv4")
+                newline = buf[index:].find("\n")
+                #print index, newline
+                #print buf[index:index+newline]
+                ipline = buf[index:index+newline]
+                ip = ipline.split(':')
+                print (ip[1].strip())
+            else:
+                buf = subprocess.check_output('ifconfig')
+                target = 'addr:'
+                index = buf.find(target) + len(target)
+                space = buf[index:].find(' ')
+                #print index, space
+                print buf[index:index+space]
+
+        else:
+            help()
+
+#urlib2 사용
+import urllib2
+import re
+url = 'https://box.cdpython.com/ezen/'
+req = urllib2.Request(url)
+res = urllib2.urlopen(req)
+html = res.read()
+#print html 
+ipaddress, port = re.findall(r"\d+\.\d+\.\d+\.\d+\/\d+",html)[0].split("/")
+
+print "ip:", ipaddress, "port",port
